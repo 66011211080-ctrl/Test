@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เว็บสุ่มตัวเลข</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .container {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+        .input-field {
+            flex: 1;
+            text-align: left;
+        }
+        .input-field label {
+            display: block;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .input-field input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .input-field input:focus {
+            border-color: #667eea;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        button:hover {
+            background-color: #5a67d8;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        .result-box {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #f7fafc;
+            border-radius: 12px;
+            border: 2px dashed #cbd5e0;
+        }
+        .result-label {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-bottom: 5px;
+        }
+        .result-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #2b6cb0;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎲 โปรแกรมสุ่มตัวเลข</h1>
+        
+        <div class="input-group">
+            <div class="input-field">
+                <label for="min">ค่าต่ำสุด</label>
+                <input type="number" id="min" value="1">
+            </div>
+            <div class="input-field">
+                <label for="max">ค่าสูงสุด</label>
+                <input type="number" id="max" value="100">
+            </div>
+        </div>
+
+        <button onclick="generateRandomNumber()">สุ่มตัวเลข</button>
+
+        <div class="result-box">
+            <div class="result-label">ผลลัพธ์</div>
+            <div class="result-number" id="result">-</div>
+        </div>
+    </div>
+
+    <script>
+        function generateRandomNumber() {
+            const min = parseInt(document.getElementById('min').value);
+            const max = parseInt(document.getElementById('max').value);
+            const resultElement = document.getElementById('result');
+
+            if (isNaN(min) || isNaN(max)) {
+                alert('กรุณากรอกตัวเลขให้ครบถ้วน');
+                return;
+            }
+
+            if (min > max) {
+                alert('ค่าต่ำสุดต้องไม่มากกว่าค่าสูงสุด');
+                return;
+            }
+
+            const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+            resultElement.innerText = randomNumber;
+        }
+    </script>
+
+</body>
+</html>
